@@ -5,9 +5,10 @@ import { IconName } from "react-native-remix-icon";
 import LinkButton from "./LinkCarousell";
 
 const CarousellIndex1 = () => {
+  const taskData = summaryInfo();
   return (
     <View className="w-full py-10 flex flex-row justify-evenly bg-transparent">
-      {summaryInfo.map((info) => (
+      {taskData.map((info: any) => (
         <LinkButton
           key={info.label}
           label={info.label}

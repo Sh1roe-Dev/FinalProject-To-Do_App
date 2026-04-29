@@ -1,10 +1,17 @@
 import { TextColor } from "@/services/_index/_colors";
-import React from "react";
+import { getTaskData } from "@/services/_index/getTaskData";
+import { TaskProps } from "@/storage/databaseStorage";
+import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 const Header = () => {
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+
+  useEffect(() => {
+    getTaskData().then(setTasks).catch(console.error);
+  }, [tasks]);
   return (
-    <View className="bg-transparent">
+    <View className="bg-transparent px-3 pb-2">
       <Text
         className="font-bold text-2xl"
         style={{
@@ -19,7 +26,7 @@ const Header = () => {
           color: TextColor,
         }}
       >
-        4 tasks
+        {tasks.length} tasks
       </Text>
     </View>
   );

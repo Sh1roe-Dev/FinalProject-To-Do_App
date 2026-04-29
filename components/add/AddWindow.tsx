@@ -1,21 +1,23 @@
 import { BgColor, Color2, TextColor } from "@/services/_index/_colors";
 import React, { useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import Notes from "../window/Notes";
+import CancelButton from "./CancelButton";
 import SubmitButton from "./SubmitButton";
 
-interface TaskProps {
-  task: string;
-}
+type WindowProps = {
+  setIsOpen: (value: boolean | null) => void;
+};
 
-const AddWindow = () => {
-  const [taskData, setTaskData] = useState<TaskProps>({
-    task: "",
-  });
+const AddWindow = ({ setIsOpen }: WindowProps) => {
+  const [taskData, setTaskData] = useState<string>('');
+
+  const [notes, setNotes] = useState<string | null>("");
 
   return (
-    <View className=" w-[100%] bg-transparent h-[100%] justify-start items-center">
+    <View className="absolute bottom-0 w-[100%] bg-transparent h-[80%] justify-start items-center">
       <View
-        className="rounded-lg w-[70%] h-[80%] flex flex-col justify-evenly items-center py-4 px-10 gap-3"
+        className="rounded-lg w-[70%] h-[50%] flex flex-col justify-evenly items-center py-4 px-10 gap-3"
         style={{
           backgroundColor: Color2,
           shadowColor: TextColor,
@@ -24,6 +26,7 @@ const AddWindow = () => {
         <View>
           <Text className="text-2xl font-semibold">Add New Task</Text>
         </View>
+        {notes !== "" && <Notes notes={notes} />}
         <View className="w-full flex gap-2">
           <Text>Task</Text>
           <TextInput
@@ -31,13 +34,18 @@ const AddWindow = () => {
             style={{
               backgroundColor: BgColor,
             }}
-            value={taskData.task}
-            onChange={(text) => {
-              setTaskData({...taskData, task: text as any})
-            }}
+            value={taskData}
+            onChangeText={setTaskData}
           />
         </View>
-        <SubmitButton />
+        <View className="w-full flex gap-2">
+          <SubmitButton
+            task={taskData}
+            setNotes={setNotes}
+            setIsOpen={setIsOpen}
+          />
+          <CancelButton setIsOpen={setIsOpen} />
+        </View>
       </View>
     </View>
   );
