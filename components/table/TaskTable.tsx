@@ -14,9 +14,13 @@ const TaskTable = () => {
   return (
     <View className="flex flex-col gap-2 px-3 pb-32">
       {tasks?.length > 0 ? (
-        tasks.map((t, i) => <TaskItem key={i} index={i} task={t?.task} status={t?.status} />)
+        tasks.map((t, i) => (
+          <TaskItem key={i} index={i} task={t?.task} status={t?.status} />
+        ))
       ) : (
-        <Text>No tasks</Text>
+        <View className="w-full h-40 flex flex-row justify-center items-center">
+          <Text className="font-semibold text-xl">No tasks</Text>
+        </View>
       )}
     </View>
   );

@@ -1,9 +1,8 @@
-import { BoxColor } from "@/services/_index/_colors";
 import React from "react";
 import { Pressable, Text } from "react-native";
 
 type CancelProps = {
-  setIsOpen: (value: boolean | null) => void;
+  setIsOpen: (value: boolean) => void;
 };
 
 const CancelButton = ({ setIsOpen }: CancelProps) => {

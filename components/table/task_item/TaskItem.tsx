@@ -1,57 +1,65 @@
-import { Color2 } from "@/services/_index/_colors";
+import { Color1, Color4 } from "@/services/hooks/_colors";
 import { TaskProps } from "@/storage/databaseStorage";
 import React, { useState } from "react";
-import { Pressable, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Icon, { IconName } from "react-native-remix-icon";
+import { handleToMarkTask } from "@/services/_index/handleToMarkTask";
+import { handleToDelete } from "@/services/_index/handleToDeleteOne";
 
 interface TaskItemProps extends TaskProps {
   index: number | null;
 }
 
 const TaskItem = ({ index, task, status }: TaskItemProps) => {
-  const [checked, setChecked] = useState(false);
-
   return (
     <View
       className="relative w-full p-5 rounded-lg flex"
       style={{
-        backgroundColor: Color2,
+        backgroundColor: Color4,
       }}
     >
-      {checked && (
-        <View className="absolute w-[98%] border border-gray-400 flex top-8 left-6" />
+      {status === "completed" && (
+        <View className="ml-[20px] absolute w-[87%] border border-gray-400 flex top-8 left-6" />
       )}
 
-      <TouchableOpacity
+      <Pressable
         className="flex flex-row items-center justify-between"
-        onPress={() => setChecked(!checked)}
+        onPress={() => handleToMarkTask(index)}
       >
         <View className="flex flex-row items-center">
-          <View
-            className={`h-6 w-6 p-0 flex justify-center items-center mr-4`}
-          >
-            {checked ? (
+          <View className={`h-6 w-6 p-0 flex justify-center items-center mr-4`}>
+            {status === "completed" ? (
               <Text className=" h-full w-full flex justify-center items-center ">
-                <Icon name={"ri-checkbox-fill" as IconName} size={21}/>
+                <Icon
+                  name={"checkbox-circle-line" as IconName}
+                  size={21}
+                  color={Color1}
+                />
               </Text>
             ) : (
-                <Text>
-                  <Icon name={'ri-square-line' as IconName} size={21} />
-                </Text>
+              <Text>
+                <Icon
+                  name={"checkbox-blank-circle-line" as IconName}
+                  size={21}
+                  color={Color1}
+                />
+              </Text>
             )}
           </View>
-          <Text className="">
-            {task} {status}
-          </Text>
+          <Text className="">{task}</Text>
         </View>
         <View>
-          <Pressable>
+          <Pressable onPress={() => handleToDelete(index)}>
             <Text className="">
-              <Icon name={"ri-delete-bin-6-line" as IconName} size={21} />
+              <Icon
+                name={"ri-delete-bin-6-line" as IconName}
+                size={20}
+                color="#fc7777"
+              />
             </Text>
           </Pressable>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

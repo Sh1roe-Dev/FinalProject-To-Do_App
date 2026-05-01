@@ -1,19 +1,16 @@
 import { addTask } from "@/services/_index/addTask";
-import { STORAGE_KEY } from "@/storage/databaseStorage";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { Pressable, Text } from "react-native";
 
 type SubmitProps = {
   task: string | null;
   setNotes: (value: string | null) => void;
-  setIsOpen: (value: boolean | null) => void;
+  setIsOpen: (value: boolean) => void;
 };
 
 const SubmitButton = ({ task, setNotes, setIsOpen }: SubmitProps) => {
   const handleToSubmit = async () => {
     if (!task) {
-      // await AsyncStorage.removeItem(STORAGE_KEY);
       return setNotes("No Data Entered!");
     }
     try {

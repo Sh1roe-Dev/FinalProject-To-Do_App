@@ -1,8 +1,8 @@
+import { Color1, Color3 } from "@/services/hooks/_colors";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Icon, { IconName } from "react-native-remix-icon";
-import { Color2, TextColor } from "@/services/_index/_colors";
 
 interface LinkButtonProps {
   label: string | null;
@@ -17,8 +17,8 @@ const LinkButton = ({ label, icon, summary, style }: LinkButtonProps) => {
     <View
       className={`w-[30%] rounded-lg p-3 shadow-lg flex flex-col gap-2`}
       style={{
-        backgroundColor: Color2,
-        shadowColor: TextColor,
+        backgroundColor: Color3,
+        shadowColor: Color1,
       }}
     >
       <View>
@@ -28,7 +28,7 @@ const LinkButton = ({ label, icon, summary, style }: LinkButtonProps) => {
         <Text className="font-semibold">{label}</Text>
       </View>
       <View>
-        <Text>{summary}</Text>
+        <Text className="text-2xl">{summary}</Text>
       </View>
     </View>
   );

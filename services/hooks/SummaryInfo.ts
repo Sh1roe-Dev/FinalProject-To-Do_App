@@ -1,7 +1,7 @@
 import { totalTask } from "./totalSummaryInfo";
 
-export const summaryInfo = () => {
-  const { total, totalPending, done } = totalTask();
+export const summaryInfo = async () => {
+  const { total, totalPending, done } = await totalTask();
 
   return [
     {
@@ -25,4 +25,3 @@ export const summaryInfo = () => {
   ];
 };
 
-export const buttonList = [];
