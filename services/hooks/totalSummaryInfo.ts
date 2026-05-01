@@ -9,10 +9,6 @@ export const totalTask = async () => {
 
   const done = task.filter((t) => t.status === "completed").length;
 
-  console.log(total);
-  console.log(totalPending);
-  console.log(done);
-
   return {
     total,
     totalPending,
