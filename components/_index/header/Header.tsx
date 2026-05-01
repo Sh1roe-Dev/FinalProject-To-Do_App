@@ -10,9 +10,11 @@ const Header = () => {
     getTaskData().then(setTasks).catch(console.error);
   }, [tasks]);
   return (
-    <View className="bg-transparent px-3 pb-2">
-      <Text className="font-bold text-2xl">To Do List</Text>
-      <Text>{tasks.length} tasks</Text>
+    <View className="bg-transparent px-3 pb-2 flex flex-row justify-between">
+      <View>
+        <Text className="font-bold text-2xl">To Do List</Text>
+        <Text>{tasks.length} tasks</Text>
+      </View>
     </View>
   );
 };

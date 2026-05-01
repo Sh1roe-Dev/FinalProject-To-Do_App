@@ -8,7 +8,7 @@ import DeleteConfirmation from "@/components/window/DeleteConfirmation";
 import MarkAllConfirmation from "@/components/window/MarkAllConfirmation";
 import { Color5 } from "@/services/hooks/_colors";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 
 export default function Index() {
   const [isOpen, setisOpen] = useState<boolean>(false);
@@ -47,6 +47,9 @@ export default function Index() {
       {isOpenDelete && <DeleteConfirmation setIsOpenDelete={setIsOpenDelete} />}
       {/* window mark all confirmation */}
       {isOpenMark && <MarkAllConfirmation setIsOpenMark={setIsOpenMark} />}
+      <View className="w-full flex flex-row justify-center mb-5">
+        <Text className="text-sm">Developed by ShiroeDev</Text>
+      </View>
     </View>
   );
 }
