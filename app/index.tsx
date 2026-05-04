@@ -48,7 +48,7 @@ export default function Index() {
       {/* window mark all confirmation */}
       {isOpenMark && <MarkAllConfirmation setIsOpenMark={setIsOpenMark} />}
       <View className="w-full flex flex-row justify-center mb-5">
-        <Text className="text-sm">Developed by ShiroeDev</Text>
+        <Text className="text-sm">Developed by Shiroe</Text>
       </View>
     </View>
   );
